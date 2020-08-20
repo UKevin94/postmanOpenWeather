@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "f1b2c899-60bf-45cd-b37c-495ad87691da",
+		"name": "OpenWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetLondonWeather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9f1968d-45e1-4c22-9200-b8b66964dc06",
+						"exec": [
+							"pm.test(\"Check that HTTP status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Check that id is equal to 2643743\", function () {",
+							"",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(2643743);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=439d4b804bc8187953eb36d2a8c26a02",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "439d4b804bc8187953eb36d2a8c26a02"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCairnsWeather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04dc0ad4-0496-463b-883e-43ec7545e15e",
+						"exec": [
+							"pm.test(\"Check that HTTP status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Check that Cairns weather is cloudy \", function () {",
+							"",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.weather[0].main).to.eql('Clouds');",
+							"});",
+							"pm.test(\"Check coordinate (failure)\", function () {",
+							"",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.coord.lon).to.eql(145);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=439d4b804bc8187953eb36d2a8c26a02",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2172797"
+						},
+						{
+							"key": "appid",
+							"value": "439d4b804bc8187953eb36d2a8c26a02"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d11e413a-a91e-4da5-a14f-f70b50c108f3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1b4afb1f-e827-4b8c-bfcb-a1e2bb0255a7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
